@@ -12,11 +12,14 @@ public class Ingredient {
     private String description;
     private BigDecimal amount;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Recipe recipe ;
 
     @OneToOne(fetch = FetchType.EAGER)
     private UnitOfMeasure uom;
+
+    public Ingredient() {
+    }
 
     public Long getId() {
         return id;

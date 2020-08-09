@@ -7,6 +7,7 @@ import guru.springframework.repositories.CategoryRepository;
 import guru.springframework.repositories.RecipeRepository;
 import guru.springframework.repositories.UnitOfMeasureRepository;
 import guru.springframework.service.RecipeService;
+import guru.springframework.service.RecipeServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +19,11 @@ public class IndexController {
 
     private final CategoryRepository categoryRepository;
     private final UnitOfMeasureRepository unitOfMeasureRepository;
-    private final RecipeRepository recipeService;
+    private final RecipeServiceImpl recipeService;
 
     public IndexController(CategoryRepository categoryRepository,
                            UnitOfMeasureRepository unitOfMeasureRepository,
-                           RecipeRepository recipeService) {
+                           RecipeServiceImpl recipeService) {
         this.categoryRepository = categoryRepository;
         this.unitOfMeasureRepository = unitOfMeasureRepository;
         this.recipeService = recipeService;
@@ -43,7 +44,8 @@ public class IndexController {
 
     @RequestMapping({"/recipes","recipes"})
     public String getRecipeList(Model model) {
-            model.addAttribute("recipes",  recipeService.findAll());
+//            model.addAttribute("recipes",  recipeService.findAll());
+           model.addAttribute("recipes",  recipeService.getRecipes());
             return "index";
             }
 

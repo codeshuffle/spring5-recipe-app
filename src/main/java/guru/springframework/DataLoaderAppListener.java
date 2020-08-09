@@ -5,7 +5,7 @@ import guru.springframework.repositories.CategoryRepository;
 import guru.springframework.repositories.IngredientRepository;
 import guru.springframework.repositories.RecipeRepository;
 import guru.springframework.repositories.UnitOfMeasureRepository;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
@@ -15,15 +15,15 @@ import java.util.Optional;
 import java.util.Set;
 
 @Component
-public class DataLoader implements CommandLineRunner {
-    //public class DataLoader implements ApplicationListene<ContextRefreshedEvent> {
+public class DataLoaderAppListener implements ApplicationListener<ContextRefreshedEvent> {
+
 
     private final RecipeRepository recipeRepository;
     private final CategoryRepository categoryRepository;
     private final UnitOfMeasureRepository unitOfMeasureRepository;
     private final IngredientRepository ingredientRepository;
 
-    public DataLoader(RecipeRepository recipeRepository,
+    public DataLoaderAppListener(RecipeRepository recipeRepository,
                       CategoryRepository categoryRepository,
                       UnitOfMeasureRepository unitOfMeasureRepository,
                       IngredientRepository ingredientRepository) {
@@ -34,14 +34,17 @@ public class DataLoader implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        doTheJob();
+    }
 
-    /**
+    public void doTheJob() {
+
         Notes note1 = new Notes();
         note1.setRecipeNotes("This a marvelous recipe");
 
         Ingredient ing1 = new Ingredient();
-        ing1.setDescription("avocado");
+        ing1.setDescription("avocadoKenia");
         ing1.setAmount(BigDecimal.valueOf(2));
         ing1.setUom(unitOfMeasureRepository.findByDescription("Piece").get());
 
@@ -64,13 +67,11 @@ public class DataLoader implements CommandLineRunner {
         }
         c.add(optionalCateg1.orElse(null));
         r1.setCategories(c);
-        Set<Ingredient> ingset1 = r1.getIngredient();
-        ingset1.add(ing1);
-        r1.setIngredient( ingset1);
-
+        ing1.setRecipe(r1);
+        r1.getIngredient().add(ing1);
 
         recipeRepository.save(r1);
-         //ingredientRepository.save(ing1);
+        //ingredientRepository.save(ing1);
 
 
         Notes note2 = new Notes();
@@ -98,13 +99,15 @@ public class DataLoader implements CommandLineRunner {
         //System.out.println(categoryRepository.findByDescription("Italian").get());
         c2.add(categoryOptional2.orElse(null));
         r2.setCategories(c2);
+        ing2.setRecipe(r2);
         r2.getIngredient().add(ing2);
 
         recipeRepository.save(r2);
         //ingredientRepository.save(ing2);
 
-        */
-    }
 
     }
 
+
+
+}
