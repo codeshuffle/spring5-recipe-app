@@ -5,16 +5,19 @@ import guru.springframework.repositories.CategoryRepository;
 import guru.springframework.repositories.IngredientRepository;
 import guru.springframework.repositories.RecipeRepository;
 import guru.springframework.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
 @Component
+@Slf4j
 public class DataLoaderAppListener implements ApplicationListener<ContextRefreshedEvent> {
 
 
@@ -34,7 +37,9 @@ public class DataLoaderAppListener implements ApplicationListener<ContextRefresh
     }
 
     @Override
+    @Transactional
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        log.debug("let's do the job");
         doTheJob();
     }
 
