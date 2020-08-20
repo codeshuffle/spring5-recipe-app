@@ -17,29 +17,29 @@ import java.util.Optional;
 @Controller
 public class IndexController {
 
-    private final CategoryRepository categoryRepository;
-    private final UnitOfMeasureRepository unitOfMeasureRepository;
+//    private final CategoryRepository categoryRepository;
+//    private final UnitOfMeasureRepository unitOfMeasureRepository;
     private final RecipeServiceImpl recipeService;
 
-    public IndexController(CategoryRepository categoryRepository,
-                           UnitOfMeasureRepository unitOfMeasureRepository,
+    public IndexController( //CategoryRepository categoryRepository,
+//                           UnitOfMeasureRepository unitOfMeasureRepository,
                            RecipeServiceImpl recipeService) {
-        this.categoryRepository = categoryRepository;
-        this.unitOfMeasureRepository = unitOfMeasureRepository;
+//        this.categoryRepository = categoryRepository;
+//        this.unitOfMeasureRepository = unitOfMeasureRepository;
         this.recipeService = recipeService;
 
     }
 
-    @RequestMapping({"","/","index"})
-    public  String getIndexPage() {
-        Optional<Category> categoryOptional =
-                categoryRepository.findByDescription("American");
-        Optional<UnitOfMeasure> unitOfMeasureOptional =
-                unitOfMeasureRepository.findByDescription("Teaspoon");
-        System.out.println("Categ. id is: " + categoryOptional.get().getId());
-        System.out.println("UnitOfM id is: " + unitOfMeasureOptional.get().getId());
-        return "index";
-    }
+//    @RequestMapping({"","/","index"})
+//    public  String getIndexPage() {
+//        Optional<Category> categoryOptional =
+//                categoryRepository.findByDescription("American");
+//        Optional<UnitOfMeasure> unitOfMeasureOptional =
+//                unitOfMeasureRepository.findByDescription("Teaspoon");
+//        System.out.println("Categ. id is: " + categoryOptional.get().getId());
+//        System.out.println("UnitOfM id is: " + unitOfMeasureOptional.get().getId());
+//        return "index";
+//    }
 
 
     @RequestMapping({"/recipes","recipes"})
