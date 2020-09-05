@@ -18,7 +18,8 @@ public class Ingredient {
     private String description;
     private BigDecimal amount;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    //@ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Recipe recipe ;
 
     @OneToOne(fetch = FetchType.EAGER)

@@ -42,8 +42,17 @@ public class Recipe {
     public Recipe() {
     }
 
-    protected boolean canEqual(final Object other) {
-        return other instanceof Recipe;
+    public void setNotes(Notes notes) {
+        if (notes != null) {
+            this.notes = notes;
+            notes.setRecipe(this);
+        }
+    }
+
+    public Recipe addIngredient(Ingredient ingredient){
+        ingredient.setRecipe(this);
+        this.ingredient.add(ingredient);
+        return this;
     }
 
 }

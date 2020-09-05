@@ -53,6 +53,10 @@ public class DataLoaderAppListener implements ApplicationListener<ContextRefresh
         ing1.setAmount(BigDecimal.valueOf(2));
         ing1.setUom(unitOfMeasureRepository.findByDescription("Piece").get());
 
+        Ingredient ing2a = new Ingredient();
+        ing2a.setDescription("lime from CapeVerde");
+        ing2a.setAmount(BigDecimal.valueOf(3));
+        ing2a.setUom(unitOfMeasureRepository.findByDescription("Ounce").get());
 
 
         Recipe r1 = new Recipe();
@@ -73,7 +77,9 @@ public class DataLoaderAppListener implements ApplicationListener<ContextRefresh
         c.add(optionalCateg1.orElse(null));
         r1.setCategories(c);
         ing1.setRecipe(r1);
+        ing2a.setRecipe(r1);
         r1.getIngredient().add(ing1);
+        r1.getIngredient().add(ing2a);
 
         recipeRepository.save(r1);
         //ingredientRepository.save(ing1);
@@ -82,10 +88,15 @@ public class DataLoaderAppListener implements ApplicationListener<ContextRefresh
         Notes note2 = new Notes();
         note2.setRecipeNotes("This a marvelous recipe no. 2");
 
-        Ingredient ing2 = new Ingredient();
-        ing2.setDescription("Chicken");
-        ing2.setAmount(BigDecimal.valueOf(1));
-        ing2.setUom(unitOfMeasureRepository.findByDescription("Tablespoon").get());
+        Ingredient ing1b = new Ingredient();
+        ing1b.setDescription("Chicken");
+        ing1b.setAmount(BigDecimal.valueOf(1));
+        ing1b.setUom(unitOfMeasureRepository.findByDescription("Teaspoon").get());
+
+        Ingredient ing2b = new Ingredient();
+        ing2b.setDescription("Orange sauce");
+        ing2b.setAmount(BigDecimal.valueOf(2));
+        ing2b.setUom(unitOfMeasureRepository.findByDescription("Tablespoon").get());
 
 
         Recipe r2 = new Recipe();
@@ -104,8 +115,10 @@ public class DataLoaderAppListener implements ApplicationListener<ContextRefresh
         //System.out.println(categoryRepository.findByDescription("Italian").get());
         c2.add(categoryOptional2.orElse(null));
         r2.setCategories(c2);
-        ing2.setRecipe(r2);
-        r2.getIngredient().add(ing2);
+        ing1b.setRecipe(r2);
+        ing2b.setRecipe(r2);
+        r2.getIngredient().add(ing1b);
+        r2.getIngredient().add(ing2b);
 
         recipeRepository.save(r2);
         //ingredientRepository.save(ing2);

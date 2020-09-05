@@ -42,7 +42,7 @@ public class IndexController {
 //    }
 
 
-    @RequestMapping({"/recipes","recipes"})
+    @RequestMapping({"/","/recipes","recipes"})
     public String getRecipeList(Model model) {
 //            model.addAttribute("recipes",  recipeService.findAll());
            model.addAttribute("recipes",  recipeService.getRecipes());

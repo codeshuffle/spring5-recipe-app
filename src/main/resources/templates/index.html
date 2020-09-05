@@ -35,6 +35,8 @@
                             <th style="width: 150px;">Description</th>
                             <th style="width: 150px;">URL</th>
                                <th style="width: 150px;">View</th>
+                               <th style="width: 150px;">Update</th>
+                               <th style="width: 150px;">Delete</th>
                            </tr>
                            </thead>
                            <tr th:remove="all">
@@ -48,13 +50,17 @@
                                <td th:text="${recipe?.description}">description 2</td>
                                <td th:text="${recipe?.url}">url 2</td>
                                <td> <a href="#" >View</a></td>
+                               <td> <a href="#" >Update</a></td>
                            </tr>
                            <tr th:each="recipe : ${recipes}">
                                <td th:text="${recipe?.id}">3</td>
                                <td th:text="${recipe?.description}">description 3</td>
                                <td th:text="${recipe?.url}">url 3</td>
                                <td> <a href="#" th:href="@{'recipe/' + ${recipe.id} + '/show'}">View</a></td>
+                               <td> <a href="#" th:href="@{'recipe/' + ${recipe.id} + '/update'}">Update</a></td>
+                               <td> <a href="#" th:href="@{'recipe/' + ${recipe.id} + '/delete'}">Delete</a></td>
                            </tr>
+
 
                        </table>
                    </div>
