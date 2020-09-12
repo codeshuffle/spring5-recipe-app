@@ -37,7 +37,7 @@ public class Recipe {
     @ManyToMany
     @JoinTable(name="recipe_category", joinColumns= @JoinColumn(name="recipe_id"),
             inverseJoinColumns=@JoinColumn(name="category_id") )
-    private Set<Category> categories;
+    private Set<Category> categories = new HashSet<>();
 
     public Recipe() {
     }
